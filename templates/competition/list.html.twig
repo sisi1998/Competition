@@ -1,0 +1,31 @@
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>Nom</td>
+        <td>Etat</td>
+        <td>liste d'equipes</td>
+        <td> Etat </td>
+        <td> winner </td>
+        <td>Action</td>
+    </tr>
+    {% for competition in competitions %}
+        <tr>
+            <td>{{ competition.id }}</td>
+            <td>{{ competition.nom }}</td>
+           
+            <td>{{ competition.etat}}</td>
+            <td>{{ competition.winner}}</td>
+
+            <td>
+                {% for equipe in competition.getEquipes() %}
+                {{ esuipe.nom}}
+                {% endfor %}
+            </td>
+
+            <td><a href="{{ path('updateCompetition',{'id':competition.id}) }}">Update</a>
+            <a href="{{ path('deleteCompetition',{'id':competition.id}) }}">Delete</a>
+            <a href="{{ path('showCompetition',{'id':competition.id}) }}">Show</a></td>
+        </tr>
+    {% endfor %}
+</table>
+<a href="{{ path('addCompetition') }}">Add Competition</a>
