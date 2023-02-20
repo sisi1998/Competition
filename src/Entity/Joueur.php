@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\JoueurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: JoueurRepository::class)]
+
 class Joueur
 {
     #[ORM\Id]
@@ -25,6 +29,14 @@ class Joueur
     #[ORM\ManyToOne(inversedBy: 'joueurs')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Equipe $equipeJ = null;
+
+    #[ORM\OneToMany(mappedBy: 'joueurP', targetEntity: PerformanceC::class)]
+    private Collection $performanceCs;
+
+    public function __construct()
+    {
+        $this->performanceCs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +87,36 @@ class Joueur
     public function setEquipeJ(?Equipe $equipeJ): self
     {
         $this->equipeJ = $equipeJ;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PerformanceC>
+     */
+    public function getPerformanceCs(): Collection
+    {
+        return $this->performanceCs;
+    }
+
+    public function addPerformanceC(PerformanceC $performanceC): self
+    {
+        if (!$this->performanceCs->contains($performanceC)) {
+            $this->performanceCs->add($performanceC);
+            $performanceC->setJoueurP($this);
+        }
+
+        return $this;
+    }
+
+    public function removePerformanceC(PerformanceC $performanceC): self
+    {
+        if ($this->performanceCs->removeElement($performanceC)) {
+            // set the owning side to null (unless already changed)
+            if ($performanceC->getJoueurP() === $this) {
+                $performanceC->setJoueurP(null);
+            }
+        }
 
         return $this;
     }

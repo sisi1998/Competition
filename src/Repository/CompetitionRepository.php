@@ -3,9 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Competition;
+use App\Repository\PerformanceCRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use App\Entity\PerformanceC;
 /**
  * @extends ServiceEntityRepository<Competition>
  *
@@ -39,6 +40,11 @@ class CompetitionRepository extends ServiceEntityRepository
         }
     }
 
+
+   
+
+
+  
 //    /**
 //     * @return Competition[] Returns an array of Competition objects
 //     */
@@ -54,13 +60,28 @@ class CompetitionRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Competition
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+public function findCompetitionFinished(){
+    $entityManager=$this->getEntityManager();
+    $query=$entityManager
+        ->createQuery("SELECT s FROM APP\Entity\Competition s WHERE  LOWER(s.etat) == en cours")
+      ;
+    return $query->getResult();
+}
+
+public function findCompetitionUnFinished(){
+    $entityManager=$this->getEntityManager();
+    $query=$entityManager
+        ->createQuery("SELECT s FROM APP\Entity\Competition s WHERE  LOWER(s.etat) == finished")
+      ;
+    return $query->getResult();
+}
+
+   public function findOneByNom($value): ?Competition
+  {
+       return $this->createQueryBuilder('c')
+            ->andWhere('c.Nom = :val')
+            ->setParameter('val', $value)
+           ->getQuery()            ->getOneOrNullResult()
+        ;
+    }
 }

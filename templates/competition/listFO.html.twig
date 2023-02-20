@@ -1,0 +1,126 @@
+{% extends "baseBo.html.twig" %}
+{% block content %}
+	<!--
+	<table border="1">
+	
+	        <td>id</td>
+	        <td>Nom</td>
+	        <td>Etat</td>
+	        <td>liste d'equipes</td>
+	        <td> Etat </td>
+	        <td> winner </td>
+	        <td>Action</td>
+	    </tr> 
+	
+	
+	    {% for competition in competitions %}
+	        <tr>
+	            <td>{{ competition.id }}</td>
+	            <td>{{ competition.nom }}</td>
+	           
+	            <td>{{ competition.etat}}</td>
+	            <td>{{ competition.winner}}</td>
+	
+	            <td>
+	                {% for equipe in competition.getEquipes() %}
+	                {{ equipe.nom}}
+	                {% endfor %}
+	            </td>
+	
+	            <td><a href="{{ path('updateCompetition',{'id':competition.id}) }}">Update</a>
+	            <a href="{{ path('deleteCompetition',{'id':competition.id}) }}">Delete</a>
+	            <a href="{{ path('showCompetition',{'id':competition.id}) }}">Show</a></td>
+	        </tr>
+	    {% endfor %}
+	</table>-->
+
+	<!-- ======= Services Section ======= -->
+		<section id="services" class="services section-bg"> <div class="container" data-aos="fade-up">
+
+			<div class="section-title">
+				<h2>Nos competitions</h2>
+				<p>Pour mieux gérer les competitions.</p>
+			</div>
+
+			<div class="row">
+				{% for competition in competitions %}
+					<div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+						<div class="icon-box" style="width: 230px; height: 250px; margin-bottom: 30px;">
+							<div class="icon">
+								<i class="bx bxl-dribbble"></i>
+							</div>
+							<h4>
+								<a href="">{{ competition.nom }}</a>
+							</h4>
+							<p>{{ competition.Date }}</p>
+							<p>
+								<a href="{{ path('updateCompetition',{'id':competition.id}) }}">Update</a>
+							</p>
+							<p>
+								<a href="{{ path('deleteCompetition',{'id':competition.id}) }}">Delete</a>
+							</p>
+							<p>
+								<a href="{{ path('showCompetition',{'id':competition.id}) }}">Show</a>
+							</p>
+
+						</div>
+					</div>
+				{% endfor %}
+
+
+			</div>
+		</section>
+		<!-- End Services Section -->
+
+
+		<section id="cta" class="cta">
+			<div class="container" data-aos="zoom-in">
+
+				<div class="row">
+					<div class="col-lg-9 text-center text-lg-start">
+						<h3>C'est à vous d'ajouter une comptetion</h3>
+					</div>
+					<div class="col-lg-3 cta-btn-container text-center">
+						<a class="cta-btn align-middle" href="{{ path('addCompetition') }}">Add Competition</a>
+					</div>
+				</div>
+
+			</div>
+
+
+			<!-- ======= Clients Section ======= -->
+			<section id="clients" class="clients section-bg">
+				<div class="container">
+
+					<div class="row" data-aos="zoom-in">
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-1.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-2.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-3.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-4.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-5.png" class="img-fluid" alt="">
+						</div>
+
+						<div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+							<img src="img/imgB/clients/client-6.png" class="img-fluid" alt="">
+						</div>
+
+					</div>
+
+				</div>
+			</section>
+			<!-- End Cliens Section -->
+		{% endblock %}

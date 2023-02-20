@@ -6,6 +6,7 @@ use App\Repository\CompetitionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompetitionRepository::class)]
 class Competition
@@ -15,6 +16,7 @@ class Competition
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message:"Date is required")]
     #[ORM\Column(length: 255)]
     private ?string $Date = null;
 
@@ -34,11 +36,17 @@ class Competition
     #[ORM\Column(length: 255)]
     private ?string $Nom = null;
 
+
+    
+    #[ORM\OneToMany(targetEntity: PerformanceC::class, mappedBy: 'competitionP', cascade: [ 'remove'])]
+    private Collection $performanceCs;
+
     
 
     public function __construct()
     {
         $this->equipes = new ArrayCollection();
+        $this->performanceCs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,6 +137,37 @@ class Competition
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, PerformanceC>
+     */
+    public function getPerformanceCs(): Collection
+    {
+        return $this->performanceCs;
+    }
+
+    public function addPerformanceC(PerformanceC $performanceC): self
+    {
+        if (!$this->performanceCs->contains($performanceC)) {
+            $this->performanceCs->add($performanceC);
+            $performanceC->setCompetitionP($this);
+        }
+
+        return $this;
+    }
+
+    public function removePerformanceC(PerformanceC $performanceC): self
+    {
+        if ($this->performanceCs->removeElement($performanceC)) {
+            // set the owning side to null (unless already changed)
+            if ($performanceC->getCompetitionP() === $this) {
+                $performanceC->setCompetitionP(null);
+            }
+        }
+
+        return $this;
+    }
+    
 
 
 }

@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Competition;
+use App\Repository\PerformanceCRepository;
+use App\Entity\PerformanceC;
+use App\Repository\CompetitionRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,16 +16,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Controller\CompetitionType;
 
-
+use App\Form\CompetitionType;
 
 class CompetitionController extends AbstractController
 {
-    #[Route('/competition', name: 'app_competition')]
+    #[Route('/', name: 'app_competition')]
     public function index(): Response
     {
-        return $this->render('competition/index.html.twig', [
+        return $this->render('baseBO.html.twig', [
             'controller_name' => 'CompetitionController',
         ]);
     }
@@ -40,9 +43,9 @@ class CompetitionController extends AbstractController
         if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            return $this->redirectToRoute('list Competition');
+            return $this->redirectToRoute('listCompetition');
         }
-        return $this->render("competition/update.html.twig", array('form' => $form->createView()));
+        return $this->render("competition/updateBO.html.twig", array('form' => $form->createView()));
     }
 
      /**
@@ -51,36 +54,52 @@ class CompetitionController extends AbstractController
     public function listCompetiton()
     {
         $competitions = $this->getDoctrine()->getRepository(Competition::class)->findAll();
-        return $this->render('competition/list.html.twig', ["competitions" => $competitions]);
+        return $this->render('competition/listBO.html.twig', ["competitions" => $competitions]);
+    }
+
+     /**
+     * @Route("/listCompetitionF", name="listCompetitionF")
+     */
+    public function listCompetitonF()
+    {
+        $competitions = $this->getDoctrine()->getRepository(Competition::class)->findAll();
+        return $this->render('competition/listFO.html.twig', ["competitions" => $competitions]);
     }
 
 
+
     /**
-     * @Route("/add", name="istCompetition")
+     * @Route("/add", name="addCompetition")
      */
     public function addCompetition(Request $request)
     {
         $competition = new Competition();
+        
         $form = $this->createForm( CompetitionType::class,  $competition);
-        $form->add("Ajouter", SubmitType::class);
+        $Name = $competition->getNom();
+        var_dump($Name);
+      
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid() ) {
             $em = $this->getDoctrine()->getManager();
             //$student->setMoyenne(0);
             $em->persist( $competition);
             $em->flush();
-            return $this->redirectToRoute('listStudent');
+            return $this->redirectToRoute("listCompetition");
         }
-        return $this->render("competition/add.html.twig", array('form' => $form->createView()));
+       return $this->render("competition/addBO.html.twig", array('form' => $form->createView(), 'name' => $Name));
+
     }
 
      /**
-     * @Route("/delete/{id}", name="deleteCompetition")
+     * @Route("/delete/{id}", name="deleteCompetmition")
      */
     public function deleteCompetition($id)
     {
-        $competition = $this->getDoctrine()->getRepository(Student::class)->find($id);
+             
+        $competition = $this->getDoctrine()->getRepository(Competition::class)->find($id);
         $em = $this->getDoctrine()->getManager();
+     
         $em->remove($competition);
         $em->flush();
         return $this->redirectToRoute("listCompetition");
@@ -91,9 +110,20 @@ class CompetitionController extends AbstractController
      */
     public function showCompetition($id)
     {
-        $competition = $this->getDoctrine()->getRepository(Student::class)->find($id);
-        return $this->render('Competition/show.html.twig', array("student" => $competition ));
+        $competition = $this->getDoctrine()->getRepository(Competition::class)->find($id);
+        return $this->render('competition/show.html.twig', array("competition" => $competition ));
     }
 
 
+ /**
+     * @Route("/show/{nom}", name="showCompetitionF")
+     */
+    public function showCompetitionF(CompetitionRepository $rep,$nom) { 
+   
+        $competitions= $rep->findOneByNom($nom);
+        return $this->render('competition/showFO.html.twig', [
+            "competitions" => $competitions,
+        ]);
+
+}
 }

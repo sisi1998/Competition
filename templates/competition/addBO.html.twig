@@ -1,0 +1,70 @@
+
+	{% extends "baseBo.html.twig" %}
+{% block content %}<html lang="en"> <link href="/test/ff.css" rel="stylesheet">
+	<head>
+			<title>Calendar 09</title>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+			<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+			<link rel="stylesheet" href="/css/cssCA/style.css">
+			<link rel="stylesheet" href="/css/cssCA/bootstrap-datetimepicker.min.css">
+			<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+			<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+			<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<link href="/test/ff.css" rel="stylesheet">
+			<script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
+
+		</head>
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+{{form_label(form.Nom,"Nom")}}
+{{ form_widget(form.Nom) }}
+{{ form_errors(form.Nom) }}
+
+
+
+<div class="form-group" "datepickers" "form-control">F>
+
+	<!-- <label class="label-control" for="id_start_datetime">Datetime picker</label> -->
+<div class="input-group date" id="id_0">	
+{{form_label(form.Date,"Date")}}
+{{ form_widget(form.Date,{'attr':{'class':'form-control'}}) }}
+	<br>
+	<br>
+</div>
+</div>
+{{ form_errors(form.Date)}}
+
+<br>
+<br>
+{{form_label(form.equipes,"equipes")}}
+{{ form_widget(form.equipes) }}
+{{ form_errors(form.equipes) }}
+
+<br>
+<br>
+{{form_label(form.etat,"etat")}}
+{{ form_widget(form.etat) }}
+{{ form_errors(form.etat) }}
+  <button type="submit" class="btn btn-primary">Create!</button>
+{{ form_end(form) }}
+
+                            <script src="/js/jsCA/jquery.min.js"></script>
+							<script src="/js/jsCA/popper.js"></script>
+							<script src="/js/jsCA/bootstrap.min.js"></script>
+							<script src="/js/jsCA/moment-with-locales.min.js"></script>
+							<script src="/js/jsCA/bootstrap-datetimepicker.min.js"></script>
+							<script src="/js/jsCA/main.js"></script>
+							<script src="/js/tableHandler/tableHandler.js"></script>
+							<script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/jquery/dist/jquery.min.js"></script>
+							<script src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+						</body>
+					</html>
+					{% endblock %}
+
