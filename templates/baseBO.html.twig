@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Focus Admin Dashboard</title>
+    <title> GoAcademy Admin Dashboard</title>
 
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
@@ -69,24 +69,22 @@
                 <div class="logo">
                     <a href="index.html">
                         <!-- <img src="images/logo.png" alt="" /> -->
-                        <span>Focus</span>
+                        <span>GOACADEMY</span>
                     </a>
                 </div>
                 <ul>
                     <li class="label">Main</li>
                     <li>
                         <a class="sidebar-sub-toggle">
-                            <i class="ti-home"></i> Dashboard
-                            <span class="badge badge-primary">2</span>
+                            <i class="ti-home"></i> Competition
+                           
                             <span class="sidebar-collapse-icon ti-angle-down"></span>
                         </a>
                         <ul>
                             <li>
-                                <a href="index.html">Dashboard 1</a>
+                                 <a href="{{ path('listCompetition')}}">liste</a>
                             </li>
-                            <li>
-                                <a href="index.html">Dashboard 2</a>
-                            </li>
+                           
 
 
 
@@ -96,31 +94,15 @@
                     <li class="label">Apps</li>
                     <li>
                         <a class="sidebar-sub-toggle">
-                            <i class="ti-bar-chart-alt"></i> Charts
+                            <i class="ti-bar-chart-alt"></i> Performances
                             <span class="sidebar-collapse-icon ti-angle-down"></span>
                         </a>
                         <ul>
                             <li>
-                                <a href="chart-flot.html">Flot</a>
+                                
+                                <a href="{{ path('listPerformance')}}">liste</a>
                             </li>
-                            <li>
-                                <a href="chart-morris.html">Morris</a>
-                            </li>
-                            <li>
-                                <a href="chartjs.html">Chartjs</a>
-                            </li>
-                            <li>
-                                <a href="chartist.html">Chartist</a>
-                            </li>
-                            <li>
-                                <a href="chart-peity.html">Peity</a>
-                            </li>
-                            <li>
-                                <a href="chart-sparkline.html">Sparkle</a>
-                            </li>
-                            <li>
-                                <a href="chart-knob.html">Knob</a>
-                            </li>
+                           
                         </ul>
                     </li>
                     <li>
@@ -711,6 +693,16 @@
     <script src="/js/jsBO/lib/toastr/toastr.min.js"></script>
     <script src="/js/jsBO/lib/toastr/toastr.init.js"></script>
 
+<!-- Vendor JS Files -->
+  <script src="/js/jsB/main.js"></script>
+
+  <script src="/vendor/vendorB/aos/aos.js"></script>
+  <script src="/vendor/vendorB/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/vendorB/glightbox/js/glightbox.min.js"></script>
+  <script src="/vendor/vendorB/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/vendor/vendorB/swiper/swiper-bundle.min.js"></script>
+  <script src="/vendor/vendorB/waypoints/noframework.waypoints.js"></script>
+  <script src="/vendor/vendorB/php-email-form/validate.js"></script>
 
 
 

@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\PerformanceCRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Joueur;
 #[ORM\Entity(repositoryClass: PerformanceCRepository::class)]
+
 class PerformanceC
 {
     #[ORM\Id]
@@ -19,36 +20,51 @@ class PerformanceC
     #[ORM\ManyToOne(inversedBy: 'performanceCs')]
     private ?Competition $competitionP = null;
 
+
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Apps = null;
 
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Mins = null;
 
+
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Buts = null;
 
+
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $PointsDecisives = null;
 
+
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Jaune = null;
 
+
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Rouge = null;
 
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $TpM = null;
 
+ #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Pr = null;
 
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $AeriensG = null;
 
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $HdM = null;
-
+private ?string $HdM = null;
+    #[Assert\NotBlank(message:"ce champ est obligatoire ")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Note = null;
 

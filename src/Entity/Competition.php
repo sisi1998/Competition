@@ -16,7 +16,7 @@ class Competition
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank(message:"Date is required")]
+    #[Assert\NotBlank(message:"la Date est obligatoire ")]
     #[ORM\Column(length: 255)]
     private ?string $Date = null;
 
@@ -24,6 +24,7 @@ class Competition
     #[ORM\JoinColumn(nullable: false)]
     private ?Arena $arena = null;
 
+    #[Assert\NotBlank(message:"les equipes sont obligatoires ")]
     #[ORM\ManyToMany(targetEntity: Equipe::class, inversedBy: 'competitions')]
     private Collection $equipes;
 
@@ -32,7 +33,8 @@ class Competition
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Equipe $winner = null;
-
+    
+    #[Assert\NotBlank(message:"la Date est obligatoire ")]
     #[ORM\Column(length: 255)]
     private ?string $Nom = null;
 

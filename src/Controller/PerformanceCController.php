@@ -30,13 +30,23 @@ class PerformanceCController extends AbstractController
     public function listPerformance()
     {
         $performanCes = $this->getDoctrine()->getRepository(PerformanceC::class)->findAll();
-        return $this->render('performance_c/list.html.twig', ["performances" => $performanCes]);
+        return $this->render('performance_c/listBO.html.twig', ["performances" => $performanCes]);
     }
 
 
 
+  /**
+     * @Route("/listPF", name="listPerformanceF")
+     */
+    public function listPerformanceF()
+    {
+        $performanCes = $this->getDoctrine()->getRepository(PerformanceC::class)->findAll();
+        return $this->render('performance_c/listFO.html.twig', ["performances" => $performanCes]);
+    }
+
+
      /**
-     * @Route("/addP", name="addPerofrmance")
+     * @Route("/addP", name="addPerformance")
      */
     public function addPerformanceC(Request $request)
     {
@@ -44,16 +54,15 @@ class PerformanceCController extends AbstractController
         
         $form = $this->createForm( PerformanceCType::class,  $performanceC);
         
-        $form->add("Ajouter", SubmitType::class);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted()&& $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             //$student->setMoyenne(0);
             $em->persist( $performanceC);
             $em->flush();
             return $this->redirectToRoute("listPerformance");
         }
-       return $this->render("performance_c/add.html.twig", array('form' => $form->createView()));
+       return $this->render("performance_c/addBO.html.twig", array('form' => $form->createView()));
 
     }
 
@@ -77,7 +86,7 @@ class PerformanceCController extends AbstractController
     public function showCPerformance($id)
     {
         $perofrmanceC = $this->getDoctrine()->getRepository(PerformanceC::class)->find($id);
-        return $this->render('Performance_c/show.html.twig', array("performanceC" => $perofrmanceC  ));
+        return $this->render('Performance_c/showBO.html.twig', array("performanceC" => $perofrmanceC  ));
     }
 
   /**
@@ -89,12 +98,12 @@ class PerformanceCController extends AbstractController
         $form = $this->createForm(PerformanceCType::class, $perofrmanceC);
         $form->add("Modifier", SubmitType::class);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute('listPerformance');
         }
-        return $this->render("performance_c/update.html.twig", array('form' => $form->createView()));
+        return $this->render("performance_c/updateBO.html.twig", array('form' => $form->createView()));
     }
 
     public function deletePerformanceF($competition)

@@ -2141,6 +2141,9 @@ label {
   border-radius: 0 4px 4px 0;
   width: 75%;
 }
+.forced{
+margin-left: 70px;
+margin-right: 10px;}
 .user-head .inbox-avatar {
   float: left;
   width: 65px;
@@ -2238,6 +2241,8 @@ ul.inbox-nav li.active a {
   background: #eef5f9;
   color: #6a6a6a;
 }
+
+
 .inbox-divider {
   border-bottom: 1px solid #e7e7e7;
 }

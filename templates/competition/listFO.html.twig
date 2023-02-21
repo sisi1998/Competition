@@ -1,46 +1,36 @@
-{% extends "baseBo.html.twig" %}
+{% extends "baseFo.html.twig" %}
 {% block content %}
-	<!--
-	<table border="1">
 	
-	        <td>id</td>
-	        <td>Nom</td>
-	        <td>Etat</td>
-	        <td>liste d'equipes</td>
-	        <td> Etat </td>
-	        <td> winner </td>
-	        <td>Action</td>
-	    </tr> 
-	
-	
-	    {% for competition in competitions %}
-	        <tr>
-	            <td>{{ competition.id }}</td>
-	            <td>{{ competition.nom }}</td>
-	           
-	            <td>{{ competition.etat}}</td>
-	            <td>{{ competition.winner}}</td>
-	
-	            <td>
-	                {% for equipe in competition.getEquipes() %}
-	                {{ equipe.nom}}
-	                {% endfor %}
-	            </td>
-	
-	            <td><a href="{{ path('updateCompetition',{'id':competition.id}) }}">Update</a>
-	            <a href="{{ path('deleteCompetition',{'id':competition.id}) }}">Delete</a>
-	            <a href="{{ path('showCompetition',{'id':competition.id}) }}">Show</a></td>
-	        </tr>
-	    {% endfor %}
-	</table>-->
 
+
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  
 	<!-- ======= Services Section ======= -->
 		<section id="services" class="services section-bg"> <div class="container" data-aos="fade-up">
 
 			<div class="section-title">
 				<h2>Nos competitions</h2>
+			
 				<p>Pour mieux gérer les competitions.</p>
 			</div>
+
+
+	  <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+		  <br>
+		  <br>
+		  <br>
+		    <br>
+		  <br>
+		  <br>
+        </div>
+      </div>
+    </div>
+
 
 			<div class="row">
 				{% for competition in competitions %}
@@ -53,14 +43,9 @@
 								<a href="">{{ competition.nom }}</a>
 							</h4>
 							<p>{{ competition.Date }}</p>
+							
 							<p>
-								<a href="{{ path('updateCompetition',{'id':competition.id}) }}">Update</a>
-							</p>
-							<p>
-								<a href="{{ path('deleteCompetition',{'id':competition.id}) }}">Delete</a>
-							</p>
-							<p>
-								<a href="{{ path('showCompetition',{'id':competition.id}) }}">Show</a>
+								<a href="{{ path('showCompetitionF',{'id':competition.id}) }}">Show</a>
 							</p>
 
 						</div>
@@ -77,14 +62,9 @@
 			<div class="container" data-aos="zoom-in">
 
 				<div class="row">
-					<div class="col-lg-9 text-center text-lg-start">
-						<h3>C'est à vous d'ajouter une comptetion</h3>
-					</div>
-					<div class="col-lg-3 cta-btn-container text-center">
-						<a class="cta-btn align-middle" href="{{ path('addCompetition') }}">Add Competition</a>
-					</div>
+					
+			
 				</div>
-
 			</div>
 
 
